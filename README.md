@@ -13,7 +13,7 @@ This file lists all the Python libraries and dependencies required to run the pr
 The project is structured into several Jupyter notebooks, each focusing on different aspects of the data analytics process, from data collection to model implementation. The key components include: data visualization, statistical modeling, and machine learning techniques such as XGBoost.
 
 
-### 5. Summary of key technologies used:
+### Summary of key technologies used:
 | Tool/Library | Description | Homepage |
 |--------------|-------------|----------|
 | <div align="center"><img src="htmlsupport/numpy.svg" alt="NumPy Logo" height="60"></div> | NumPy: A library for numerical computations in Python, supporting arrays and matrices. | [NumPy Homepage](https://numpy.org/) |
