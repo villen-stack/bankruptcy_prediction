@@ -24,3 +24,4 @@ The project is structured into several Jupyter notebooks, each focusing on diffe
 | <div align="center"><img src="htmlsupport/pandas.svg" alt="Pandas Logo" height="60"></div> | Pandas: A data manipulation and analysis library for Python. | [Pandas Homepage](https://pandas.pydata.org/) |
 | <div align="center"><img src="htmlsupport/jupyter.svg" alt="Jupyter Logo" height="60"></div> | Jupyter Notebook: An interactive environment for running Python code. | [Jupyter Homepage](https://jupyter.org/) |
 | <div align="center"><img src="htmlsupport/simfin.svg" alt="SimFin Logo" height="60"></div> | SimFin: A third‑party service delivering financial information. | [SimFin Homepage](https://www.simfin.com/en/) |
+| <div align="center"><img src="htmlsupport/xgboost.png" alt="XGBoost Logo" height="60"></div> | XGBoost: An optimized gradient boosting library for machine learning. | [XGBoost Homepage](https://xgboost.readthedocs.io/) |
