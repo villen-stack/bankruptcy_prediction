@@ -7,5 +7,6 @@ xgboost
 jupyter
 simfin
 tabulate
+openpyxl
 os
 psutil
