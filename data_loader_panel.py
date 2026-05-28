@@ -20,6 +20,11 @@ def clean_df(df):
         df["Year of incorporation"] = pd.to_datetime(df["Date of incorporation"], errors="coerce").dt.year.astype("Int16")
         df = df.drop(columns=["Date of incorporation"])
 
+    # NACE code: preserve leading zeros as zero-padded 4-character string
+    nace_col = "NACE Rev. 2, core code (4 digits)"
+    if nace_col in df.columns:
+        df[nace_col] = df[nace_col].astype(str).str.zfill(4)
+
     # Convert all financial figure columns (those ending with a 4-digit year) to Float64
     fin_cols = [c for c in df.columns if re.search(r"\d{4}$", c)]
     df[fin_cols] = df[fin_cols].apply(pd.to_numeric, errors="coerce").astype("Float64")
@@ -28,6 +33,7 @@ def clean_df(df):
 
 def print_df_structure(name, df):
     rows = []
+    print(f"\nDataFrame: {name}")
     for i, col in enumerate(df.columns):
         non_null = df[col].notna().sum()
         null     = df[col].isna().sum()
@@ -60,11 +66,13 @@ for label, path in files.items():
     try:
         df = pd.read_excel(path)
         df = clean_df(df)
-        print(f"Loaded: {os.path.basename(path)}")
         if label == "Active":
             df_active = df
+            df_name = "df_active"
         else:
             df_bankrupt = df
-        print_df_structure(os.path.basename(path), df)
+            df_name = "df_bankrupt"
+        print(f"Loaded: {df_name} ({os.path.basename(path)})")
+        print_df_structure(df_name, df)
     except Exception as e:
         print(f"Error loading {path}: {e}")
