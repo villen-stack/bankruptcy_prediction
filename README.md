@@ -24,3 +24,24 @@ The project is structured into several Jupyter notebooks, each focusing on diffe
 | <div align="center"><img src="htmlsupport/pandas.svg" alt="Pandas Logo" height="60"></div> | Pandas: A data manipulation and analysis library for Python. | [Pandas Homepage](https://pandas.pydata.org/) |
 | <div align="center"><img src="htmlsupport/jupyter.svg" alt="Jupyter Logo" height="60"></div> | Jupyter Notebook: An interactive environment for running Python code. | [Jupyter Homepage](https://jupyter.org/) |
 | <div align="center"><img src="htmlsupport/xgboost.png" alt="XGBoost Logo" height="60"></div> | XGBoost: An optimized gradient boosting library for machine learning. | [XGBoost Homepage](https://xgboost.readthedocs.io/) |
+
+
+### Summary of key technologies used:
+
+| Tool/Library | Description | Homepage |
+|--------------|-------------|----------|
+| ![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white) | Python: The programming language used for this project. | [Python Homepage](https://www.python.org/) |
+| ![NumPy](https://img.shields.io/badge/NumPy-013243?style=for-the-badge&logo=numpy&logoColor=white) | NumPy: Used for numerical computations and array operations throughout the analysis pipeline. | [NumPy Homepage](https://numpy.org/) |
+| ![pandas](https://img.shields.io/badge/pandas-150458?style=for-the-badge&logo=pandas&logoColor=white) | pandas: Used for panel data construction, feature engineering, and preprocessing of 10,000+ Finnish company financial statements. | [pandas Homepage](https://pandas.pydata.org/) |
+| ![scikit-learn](https://img.shields.io/badge/scikit--learn-F7931E?style=for-the-badge&logo=scikit-learn&logoColor=white) | scikit-learn: Used for model evaluation, cross-validation, and baseline logistic regression classifier. | [scikit-learn Homepage](https://scikit-learn.org/) |
+| ![XGBoost](https://img.shields.io/badge/XGBoost-189AB4?style=for-the-badge&logoColor=white) | XGBoost: Primary gradient boosting classifier for bankruptcy prediction on imbalanced Finnish private company data. | [XGBoost Homepage](https://xgboost.readthedocs.io/) |
+| ![SHAP](https://img.shields.io/badge/SHAP-FF6B6B?style=for-the-badge&logoColor=white) | SHAP: Used for model interpretability — identifying which financial ratios drive bankruptcy predictions. | [SHAP Homepage](https://shap.readthedocs.io/) |
+| ![Matplotlib](https://img.shields.io/badge/Matplotlib-11557C?style=for-the-badge&logo=matplotlib&logoColor=white) | Matplotlib: Used for visualizing model performance, feature importance, and financial data distributions. | [Matplotlib Homepage](https://matplotlib.org/) |
+| ![Seaborn](https://img.shields.io/badge/Seaborn-4C72B0?style=for-the-badge&logoColor=white) | Seaborn: Used for statistical visualizations including correlation matrices and class distribution plots. | [Seaborn Homepage](https://seaborn.pydata.org/) |
+| ![Jupyter](https://img.shields.io/badge/Jupyter-F37626?style=for-the-badge&logo=jupyter&logoColor=white) | Jupyter Notebook: Interactive development environment used for exploratory analysis and model development. | [Jupyter Homepage](https://jupyter.org/) |
+
+### Data Source
+
+| Source | Description | Homepage |
+|--------|-------------|----------|
+| ![Orbis](https://img.shields.io/badge/Orbis-Bureau%20van%20Dijk-003366?style=for-the-badge&logoColor=white) | Orbis (Bureau van Dijk / Moody's Analytics): Source of Finnish private company financial statements 2004–2024, accessed via TAMK institutional license. | [Orbis Homepage](https://www.bvdinfo.com/en-gb/our-products/data/international/orbis) |

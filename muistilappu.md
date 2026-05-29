@@ -18,7 +18,24 @@ katsotaan pitääkö tehdä kasvu muuttujat ja normalisointi
 tilastokeskus voidaanko löytää dataa sieltä miten taloudella menee+
 
 
+Number of companies:
+(cannot be more than 62,646 companies) TÄMÄ SIIS ACTIVE
+
 64,052 companies total
 ├── Active companies          ← solvent class (majority)
 ├── Bankruptcy                ← bankrupt class (in proceedings)
 └── Dissolved (bankruptcy)    ← bankrupt class (completed)
+
+
+
+
+============================================================
+  df_active
+============================================================
+  Rows: 9,100    Columns: 108
+
+
+  ============================================================
+  df_bankrupt
+============================================================
+  Rows: 1,136    Columns: 108
