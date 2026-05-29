@@ -79,7 +79,7 @@ def print_df_structure(name, df):
         numalign="right",
         stralign="left",
     ))
-    mem_mb = df.memory_usage(deep=True).sum() / 1024**2
+    mem_mb = df.memory_usage(deep=True).sum() / 1024
     print(f"\n  Memory usage: {mem_mb:.2f} MB\n")
 
 # ============================================================
