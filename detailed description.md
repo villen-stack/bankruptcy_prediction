@@ -9,15 +9,23 @@ section exclusions and size filters as the study sample — returned
 64,052 Finnish companies of which 1,136 (1.77%) held bankruptcy
 or dissolved-by-bankruptcy status at the time of extraction.
 
-Our study sample deliberately overrepresents the bankrupt class
-to ensure sufficient minority class observations for model
-training — the sample bankruptcy rate of 11.1% is approximately
-6.3× the universe rate. To counteract this oversampling and
+The data extraction design drove this imbalance from the outset:
+all 1,136 bankrupt companies matching the NACE and size filters
+were extracted in full, as the minority class required maximum
+representation for model training.
+
+The active company sample (9,100) was then drawn randomly from the remaining 62,916 —
+a practical constraint of the Orbis export interface rather than
+a statistical sampling decision. As a result, our study sample
+deliberately overrepresents the bankrupt class — the sample
+bankruptcy rate of 11.1% is approximately 6.3× the universe rate. To counteract this oversampling and
 calibrate the model toward the true Finnish SME bankruptcy
 prevalence, we set XGBoost's `scale_pos_weight` parameter to
 the universe-derived class ratio:
 
-$$\text{scale\_pos\_weight} = \frac{N_{\text{active}}^{\text{universe}}}{N_{\text{bankrupt}}^{\text{universe}}} = \frac{62{,}916}{1{,}136} \approx 55.4$$
+scale_pos_weight = N_active_universe / N_bankrupt_universe
+= 62,916 / 1,136
+≈ 55.4
 
 This approach is preferred over sample-derived weighting because
 the universe counts represent real observed prevalence within the
@@ -53,3 +61,8 @@ was applied, yielding:
 Stratification ensures the bankruptcy prevalence in the sample
 is preserved across both splits, preventing train/test imbalance
 from affecting model evaluation.
+
+> Note: Final sample counts (8,993 active, 1,129 bankrupt) differ
+> slightly from the raw Moody's export (9,100 active, 1,136 bankrupt)
+> due to exclusion of companies with insufficient financial data
+> coverage across the 2022–2024 observation window.
