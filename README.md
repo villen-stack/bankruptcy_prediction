@@ -10,7 +10,7 @@ This project builds a **binary bankruptcy prediction model** for Finnish private
 
 **Key highlights:**
 - 📊 **10,000+ Finnish private companies** across 14 NACE industry sectors
-- 📅 **20 years of financial history** (2004–2024) from Orbis / Bureau van Dijk
+- 📅 **20 years of financial history** (2004–2024) from Moody's
 - 🏦 **Real-world class imbalance** — ~11% bankruptcy rate, handled via XGBoost class weighting
 - 🔍 **SHAP interpretability** — identifying which financial ratios drive insolvency risk
 - 📈 **Benchmarked against Altman Z-score** (1968) to demonstrate ML improvement over classical methods
