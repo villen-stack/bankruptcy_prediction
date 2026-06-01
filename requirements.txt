@@ -10,3 +10,4 @@ tabulate
 openpyxl
 os
 psutil
+shap
