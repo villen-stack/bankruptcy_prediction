@@ -1,6 +1,6 @@
 # Finnish Corporate Bankruptcy Prediction
 ### Machine Learning on Private Company Financial Data
-**Author:** [Ville Nurminen](https://www.linkedin.com/in/villenurminen/) · CPA · CFA Level II Candidate
+**Author:** [Ville Nurminen](https://www.linkedin.com/in/villenurminen/) 
 
 ---
 
