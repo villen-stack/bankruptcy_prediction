@@ -1,13 +1,9 @@
 numpy
 pandas
 matplotlib
-seaborn
 scikit-learn
 xgboost
-jupyter
-simfin
+shap
 tabulate
 openpyxl
-os
-psutil
-shap
+jupyter
