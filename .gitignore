@@ -1,3 +1,13 @@
+# Environment and local tools
 .venv/
-data/
 .claude/
+
+# Licensed company-level data — never commit
+data/
+
+# Python and Jupyter clutter
+__pycache__/
+.ipynb_checkpoints/
+
+# Streamlit secrets (if you ever add any)
+.streamlit/secrets.toml

@@ -1,15 +1,15 @@
 Industry,companies,bankrupt,rate_sample,rate_population
-Construction,1773,303.0,0.1709,0.0288
-Administrative and support services,645,106.0,0.1643,0.0275
-Accommodation and food service,594,89.0,0.1498,0.0247
-Other service activities,117,17.0,0.1453,0.0239
-Wholesale and retail trade,1879,220.0,0.1171,0.0187
-Transport and storage,761,88.0,0.1156,0.0185
-"Arts, entertainment, recreation",208,23.0,0.1106,0.0176
-Manufacturing,1138,117.0,0.1028,0.0162
-"Professional, scientific, technical",1223,77.0,0.063,0.0096
-"Water supply, waste management",84,5.0,0.0595,0.009
-Information and communication,526,31.0,0.0589,0.0089
+Construction,1755,300.0,0.1709,0.0288
+Administrative and support services,629,106.0,0.1685,0.0283
+Accommodation and food service,591,89.0,0.1506,0.0249
+Other service activities,116,17.0,0.1466,0.0241
+Wholesale and retail trade,1841,218.0,0.1184,0.019
+Transport and storage,746,88.0,0.118,0.0189
+"Arts, entertainment, recreation",207,23.0,0.1111,0.0177
+Manufacturing,1088,115.0,0.1057,0.0167
+"Water supply, waste management",74,5.0,0.0676,0.0103
+"Professional, scientific, technical",1177,76.0,0.0646,0.0098
+Information and communication,511,31.0,0.0607,0.0092
 "Agriculture, forestry, fishing",363,21.0,0.0579,0.0088
-Real estate,774,31.0,0.0401,0.006
-Mining and quarrying,38,1.0,0.0263,0.0039
+Real estate,714,31.0,0.0434,0.0065
+Mining and quarrying,36,1.0,0.0278,0.0041

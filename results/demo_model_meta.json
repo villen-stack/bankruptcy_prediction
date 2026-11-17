@@ -43,41 +43,41 @@
       "label": "Debt ratio",
       "step": 0.01,
       "scale": "linear",
-      "min": 0.0105095,
-      "max": 2.896219640000001,
-      "default": 0.554599
+      "min": 0.01042046,
+      "max": 2.924035020000005,
+      "default": 0.5526949999999999
     },
     "FE_current_ratio": {
       "label": "Current ratio",
       "step": 0.05,
       "scale": "linear",
-      "min": 0.077269,
-      "max": 48.636364,
-      "default": 1.627207
+      "min": 0.077519,
+      "max": 48.4301715,
+      "default": 1.6369335
     },
     "FE_roa": {
       "label": "Return on assets",
       "step": 0.01,
       "scale": "linear",
-      "min": -1.15551116,
-      "max": 0.8450346800000001,
-      "default": 0.062767
+      "min": -1.1719983299999999,
+      "max": 0.8481530200000003,
+      "default": 0.064815
     },
     "Company Age": {
       "label": "Company age (years)",
       "step": 1,
       "scale": "linear",
       "min": 0.0,
-      "max": 65.0,
-      "default": 14.0
+      "max": 64.0,
+      "default": 13.0
     },
     "Total assets": {
       "label": "Total assets (EUR)",
       "step": null,
       "scale": "log",
-      "min": 76865.64,
-      "max": 126611419.99999888,
-      "default": 606000.0
+      "min": 75440.0,
+      "max": 27123679.999999933,
+      "default": 570000.0
     }
   },
   "derived_inputs": {
@@ -92,22 +92,22 @@
     "FE_negative_equity": 1,
     "FE_negative_pl": 1
   },
-  "odds_factor": 0.14383883898004288,
-  "population_rate": 0.017735589833260477,
+  "odds_factor": 0.14384574586663557,
+  "population_rate": 0.018142048378795676,
   "population_score_deciles": [
-    6e-06,
-    0.000301,
-    0.000664,
-    0.001176,
-    0.002125,
-    0.003521,
-    0.006344,
-    0.012593,
-    0.027804,
-    0.086885,
-    0.865031
+    3e-06,
+    0.000263,
+    0.000666,
+    0.001271,
+    0.00231,
+    0.004083,
+    0.007435,
+    0.013529,
+    0.027539,
+    0.07536,
+    0.934506
   ],
-  "test_roc_auc": 0.8855,
-  "test_avg_precision": 0.5325,
+  "test_roc_auc": 0.8623,
+  "test_avg_precision": 0.5271,
   "how_to_score": "Build one row with the columns in 'features', predict_proba with the model, then convert to a population probability: odds = p / (1 - p) * odds_factor; p_population = odds / (1 + odds). Per-input contributions: model.get_booster().predict(DMatrix, pred_contribs=True)."
 }

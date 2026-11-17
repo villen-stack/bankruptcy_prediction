@@ -1,5 +1,5 @@
 class,flag,pct_of_companies
 Active,Negative equity,6.2
-Bankrupt,Negative equity,43.9
-Active,Loss-making year,23.6
-Bankrupt,Loss-making year,66.0
+Bankrupt,Negative equity,44.0
+Active,Loss-making year,23.3
+Bankrupt,Loss-making year,65.7
