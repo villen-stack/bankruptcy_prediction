@@ -1,7 +1,9 @@
 Metric,Value
-Active companies,9100
-Bankrupt companies,1136
-Total companies,10236
+Active companies (export),9100
+Bankrupt companies (export),1136
+Active companies (model data),8994
+Bankrupt companies (model data),1129
+Total companies (model data),10123
 Panel rows (company-years),27965
 First year,2022
 Last year,2024
