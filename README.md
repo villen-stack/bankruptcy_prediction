@@ -52,8 +52,18 @@ This project asks a practical question: **how well can a company's latest financ
 Financial statement data was obtained from Moody's (Orbis database). The target population is Finnish limited companies matching these search criteria:
 
 - Status: active, bankrupt, or dissolved through bankruptcy
-- Revenue ≥ €200,000 and total assets ≥ €100,000
-- Excluded industries (NACE sections): K (finance), O (public administration), P (education), Q (health), D (energy), T (households), U (extraterritorial)
+- Revenue ≥ €200,000 and total assets ≥ €100,000: excludes dormant shell companies and very small entities whose accounts carry little information
+- Excluded industries (NACE sections), where financial statements are not comparable with ordinary operating companies or ordinary bankruptcy is rare:
+
+| Section | Industry | Why excluded |
+|---|---|---|
+| K | Finance and insurance | Balance sheets work differently: for a bank, high debt is the business model, so ratios like the debt ratio mean something else. Failures are handled through regulatory resolution rather than ordinary bankruptcy |
+| D | Electricity, gas and heat supply | Capital-intensive, regulated utilities, often municipally owned, with a different risk profile |
+| O | Public administration | Public bodies, which do not go bankrupt in the ordinary sense |
+| P | Education | Largely public or publicly funded in Finland |
+| Q | Health and social work | Largely public or publicly funded in Finland |
+| T | Households as employers | Not companies |
+| U | Extraterritorial organisations | Not Finnish companies |
 
 The search had no upper size limit, so it also returned large companies and group parents. The project is limited to **SME-sized companies: total assets of at most €43M** in the latest year (the EU SME balance-sheet threshold; the full EU definition also uses employees and turnover, which are not in the data). Large companies are a different population and are almost never bankrupt, so including them would mostly teach the model that "big means safe".
 
