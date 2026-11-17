@@ -15,7 +15,7 @@
 
 | Link | Type | What it contains |
 |---|---|---|
-| 🔗 **Live app** *(coming soon)* | Web app | Data, model results and an interactive risk calculator |
+| 🔗 **[Live app](https://finnish-sme-bankruptcy.streamlit.app/)** | Web app | Data, model results and an interactive risk calculator |
 | [`01_Build_dataset.ipynb`](01_Build_dataset.ipynb) | Code: notebook | Data loading, cleaning and feature engineering |
 | [`02_Train_and_evaluate.ipynb`](02_Train_and_evaluate.ipynb) | Code: notebook | XGBoost training, evaluation, probability correction and SHAP |
 | [`03_Demo_app.py`](03_Demo_app.py) | Code: app | The Streamlit app, built on the aggregate results in [`results/`](results/) |
@@ -183,7 +183,7 @@ Each company row also includes the five reported figures, company age and indust
 
 ## Results and limitations
 
-The full results are in the **[app](#finnish-sme-bankruptcy-prediction)** *(link coming soon)*: cross-validation, ROC and precision–recall curves at both base rates, calibration, how the cut-off was chosen, SHAP explanations, and a risk calculator.
+The full results are in the **[live app](https://finnish-sme-bankruptcy.streamlit.app/)**: cross-validation, ROC and precision–recall curves at both base rates, calibration, how the cut-off was chosen, SHAP explanations, and a risk calculator.
 
 ### Headline results
 
