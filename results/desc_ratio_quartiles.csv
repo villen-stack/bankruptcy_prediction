@@ -1,0 +1,15 @@
+feature,label,class,n,q1,median,q3,whisker_low,whisker_high
+FE_debt_ratio,Debt ratio,Active,8988,0.2547085,0.5060135,0.76667325,-0.47,1.521514
+FE_debt_ratio,Debt ratio,Bankrupt,1127,0.797508,0.979769,1.3955955,-0.069739,2.261443
+FE_current_ratio,Current ratio,Active,8973,1.072797,1.766204,3.362205,-1.891304,6.780488
+FE_current_ratio,Current ratio,Bankrupt,1128,0.51545275,0.9195424999999999,1.38763625,0.008448,2.678643
+FE_roa,Return on assets,Active,8989,0.001961,0.076033,0.185984,-0.27323,0.461774
+FE_roa,Return on assets,Bankrupt,1128,-0.34262175,-0.09364,0.02345,-0.891213,0.539568
+FE_assets_yoy_growth,Asset growth (YoY),Active,8619,-0.08225099999999999,0.014862,0.1590155,-0.444106,0.51995
+FE_assets_yoy_growth,Asset growth (YoY),Bankrupt,756,-0.22801675,-0.0382785,0.19710224999999998,-0.864907,0.829545
+FE_equity_yoy_change,Equity change / assets (YoY),Active,8610,-0.030078499999999998,0.022123,0.103988,-0.230769,0.3049
+FE_equity_yoy_change,Equity change / assets (YoY),Bankrupt,755,-0.285489,-0.097355,0.0111545,-0.72119,0.45527
+FE_debt_ratio_change,Debt ratio change (YoY),Active,8609,-0.068859,-0.011829,0.036771,-0.227264,0.194851
+FE_debt_ratio_change,Debt ratio change (YoY),Bankrupt,754,-0.0058615,0.106681,0.34508675,-0.525366,0.867446
+FE_roa_change,ROA change (YoY),Active,8610,-0.07888574999999999,-0.003009,0.0637635,-0.292282,0.276961
+FE_roa_change,ROA change (YoY),Bankrupt,755,-0.34135550000000003,-0.085886,0.0514325,-0.928125,0.630064

@@ -1,0 +1,8 @@
+metric,sample,population
+Bankruptcy rate,0.1116,0.0177
+ROC-AUC,0.9059,0.9059
+Average Precision,0.623,0.2755
+Precision at threshold,0.4984,0.125
+Recall at threshold,0.6814,0.6814
+F1 at threshold,0.5757,0.2113
+Threshold (probability),0.2355,0.0424

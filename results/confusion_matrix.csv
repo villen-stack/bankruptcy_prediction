@@ -1,0 +1,5 @@
+actual,predicted,companies
+Active,Active,1644
+Active,Bankrupt,155
+Bankrupt,Active,72
+Bankrupt,Bankrupt,154

@@ -1,0 +1,32 @@
+feature,mean_abs_shap
+FE_debt_ratio,0.8332
+P/L before tax,0.3591
+FE_roa,0.3413
+Current liabilities,0.3343
+FE_equity_yoy_change,0.3064
+FE_debt_ratio_change,0.3029
+FE_roa_change,0.2344
+FE_assets_yoy_growth,0.2324
+Company Age,0.2235
+FE_non_current_assets,0.2119
+Shareholders funds,0.2091
+FE_current_ratio,0.1706
+Current assets,0.1661
+Industry: Construction,0.1599
+FE_total_liabilities,0.1274
+Total assets,0.1068
+Industry: Real estate,0.093
+Industry: Information and communication,0.0607
+"Industry: Professional, scientific, technical",0.0544
+Industry: Wholesale and retail trade,0.0478
+Industry: Administrative and support services,0.0349
+Industry: Accommodation and food service,0.0325
+Industry: Manufacturing,0.0307
+"Industry: Agriculture, forestry, fishing",0.0276
+Industry: Transport and storage,0.0135
+"Industry: Arts, entertainment, recreation",0.0078
+FE_negative_equity,0.0043
+"Industry: Water supply, waste management",0.0015
+FE_negative_pl,0.0
+Industry: Mining and quarrying,0.0
+Industry: Other service activities,0.0

@@ -1,0 +1,19 @@
+item,value
+Companies in model data,10123
+Bankrupt companies,1129
+Bankruptcy rate (sample),0.1115
+Bankruptcy rate (population),0.0177
+"CV ROC-AUC (validation, mean)",0.9024
+"CV ROC-AUC (validation, std)",0.0185
+CV Avg Precision (validation),0.6249
+Test ROC-AUC,0.9059
+Test Avg Precision (sample),0.623
+Test Avg Precision (population),0.2755
+Test precision (sample),0.4984
+Test precision (population),0.125
+Test recall,0.6814
+Threshold (sample probability),0.2355
+Top feature 1,FE_debt_ratio
+Top feature 2,P/L before tax
+Top feature 3,FE_roa
+Demo model test ROC-AUC,0.8931

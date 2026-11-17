@@ -1,0 +1,24 @@
+Column,Dtype,Non-null,Missing %,Median active,Median bankrupt
+company_id,int64,10123,0.0,,
+Company name Latin alphabet,str,10123,0.0,,
+Bankrupt,int64,10123,0.0,,
+Year,Int64,10123,0.0,,
+n_years_reported,Int64,10123,0.0,,
+NACE Section,str,10123,0.0,,
+Company Age,Int64,10123,0.0,14.0,9.0
+Total assets,Float64,10120,0.0,625000.0,450000.0
+Current assets,Float64,10120,0.0,328000.0,282000.0
+Current liabilities,Float64,10115,0.1,173000.0,366000.0
+Shareholders funds,Float64,10119,0.0,267000.0,8000.0
+P/L before tax,Float64,10119,0.0,43000.0,-39000.0
+FE_total_liabilities,Float64,10116,0.1,262000.0,515000.0
+FE_non_current_assets,Float64,10120,0.0,160000.0,85500.0
+FE_debt_ratio,float64,10115,0.1,0.5060138021689122,0.9797687861271677
+FE_current_ratio,float64,10101,0.2,1.7662037037037037,0.9195425073405644
+FE_roa,float64,10117,0.1,0.07603268694952971,-0.09364008351981637
+FE_negative_equity,Int64,10119,0.0,0.0,0.0
+FE_negative_pl,Int64,10119,0.0,0.0,1.0
+FE_assets_yoy_growth,float64,9375,7.4,0.01486232790988736,-0.03827838827838828
+FE_equity_yoy_change,float64,9365,7.5,0.022123030689580075,-0.09735509285312324
+FE_debt_ratio_change,float64,9363,7.5,-0.011828889509329366,0.10668104184289684
+FE_roa_change,float64,9365,7.5,-0.003008844829208253,-0.0858859575489504
