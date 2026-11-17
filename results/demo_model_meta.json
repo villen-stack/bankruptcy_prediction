@@ -1,16 +1,10 @@
 {
   "features": [
-    "Company Age",
-    "Total assets",
-    "Current assets",
-    "Current liabilities",
-    "Shareholders funds",
-    "P/L before tax",
-    "FE_total_liabilities",
-    "FE_non_current_assets",
     "FE_debt_ratio",
     "FE_current_ratio",
     "FE_roa",
+    "Company Age",
+    "Total assets",
     "FE_negative_equity",
     "FE_negative_pl",
     "Industry: Agriculture, forestry, fishing",
@@ -44,32 +38,76 @@
     "R - Arts, entertainment, recreation",
     "S - Other service activities"
   ],
+  "sliders": {
+    "FE_debt_ratio": {
+      "label": "Debt ratio",
+      "step": 0.01,
+      "scale": "linear",
+      "min": 0.0105095,
+      "max": 2.896219640000001,
+      "default": 0.554599
+    },
+    "FE_current_ratio": {
+      "label": "Current ratio",
+      "step": 0.05,
+      "scale": "linear",
+      "min": 0.077269,
+      "max": 48.636364,
+      "default": 1.627207
+    },
+    "FE_roa": {
+      "label": "Return on assets",
+      "step": 0.01,
+      "scale": "linear",
+      "min": -1.15551116,
+      "max": 0.8450346800000001,
+      "default": 0.062767
+    },
+    "Company Age": {
+      "label": "Company age (years)",
+      "step": 1,
+      "scale": "linear",
+      "min": 0.0,
+      "max": 65.0,
+      "default": 14.0
+    },
+    "Total assets": {
+      "label": "Total assets (EUR)",
+      "step": null,
+      "scale": "log",
+      "min": 76865.64,
+      "max": 126611419.99999888,
+      "default": 606000.0
+    }
+  },
+  "derived_inputs": {
+    "FE_negative_equity": "1 if FE_debt_ratio > 1 else 0",
+    "FE_negative_pl": "1 if FE_roa < 0 else 0",
+    "industry": "one-hot: 1 for the chosen industry column, 0 for the others"
+  },
+  "monotone_constraints": {
+    "FE_debt_ratio": 1,
+    "FE_current_ratio": -1,
+    "FE_roa": -1,
+    "FE_negative_equity": 1,
+    "FE_negative_pl": 1
+  },
   "odds_factor": 0.14383883898004288,
   "population_rate": 0.017735589833260477,
-  "test_roc_auc": 0.8931,
-  "test_avg_precision": 0.5384,
   "population_score_deciles": [
-    1.7e-05,
-    0.000264,
-    0.000567,
-    0.001134,
-    0.002121,
-    0.003825,
-    0.006761,
-    0.0128,
-    0.027958,
-    0.079754,
-    0.898127
+    6e-06,
+    0.000301,
+    0.000664,
+    0.001176,
+    0.002125,
+    0.003521,
+    0.006344,
+    0.012593,
+    0.027804,
+    0.086885,
+    0.865031
   ],
-  "feature_rules": {
-    "FE_total_liabilities": "Total assets - Shareholders funds",
-    "FE_non_current_assets": "Total assets - Current assets",
-    "FE_debt_ratio": "FE_total_liabilities / Total assets",
-    "FE_current_ratio": "Current assets / Current liabilities",
-    "FE_roa": "P/L before tax / Total assets",
-    "FE_negative_equity": "1 if Shareholders funds < 0 else 0",
-    "FE_negative_pl": "1 if P/L before tax < 0 else 0",
-    "division_rule": "ratio is missing (NaN) if |denominator| < 1000 EUR",
-    "probability": "apply odds_factor to the model output to get the population probability"
-  }
+  "test_roc_auc": 0.8855,
+  "test_avg_precision": 0.5325,
+  "how_to_score": "Build one row with the columns in 'features', predict_proba with the model, then convert to a population probability: odds = p / (1 - p) * odds_factor; p_population = odds / (1 + odds). Per-input contributions: model.get_booster().predict(DMatrix, pred_contribs=True)."
 }
