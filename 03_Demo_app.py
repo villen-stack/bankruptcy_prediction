@@ -598,9 +598,32 @@ shows how much the model adds.
                       yaxis_title="Share of flagged companies that fail (precision)",
                       yaxis_range=[0, 1.05])
     c2.plotly_chart(style(fig, 400), width="stretch")
-    c2.caption("Catching more bankruptcies means flagging more companies, and a larger share "
-               "of them turn out to be healthy. At population level, healthy companies are far "
-               "more common, so precision is lower.")
+    # Reading of the chosen point, at the selected base rate
+    rec_t   = m.loc["Recall at threshold", lvl]
+    prec_t  = m.loc["Precision at threshold", lvl]
+    ap_lvl  = m.loc["Average Precision", lvl]
+    lift_ap = ap_lvl / base
+    if lvl == "sample":
+        c2.caption(
+            f"Catching more bankruptcies means flagging more companies, and a larger share of "
+            f"them turn out to be healthy. At the chosen cut-off the model catches "
+            f"{rec_t:.0%} of bankruptcies, and {prec_t:.0%} of the companies it flags really "
+            f"failed, against {base:.1%} for random picks. Switch to *Population* to see the "
+            f"real-world picture."
+        )
+    else:
+        lift_ap_s = m.loc["Average Precision", "sample"] / m.loc["Bankruptcy rate", "sample"]
+        c2.caption(
+            f"In the real population healthy companies are far more common, so every point "
+            f"slides down: the same flags contain many more false alarms. At the chosen cut-off "
+            f"the model still catches {rec_t:.0%} of bankruptcies, but only about 1 in "
+            f"{1 / prec_t:.0f} flagged companies fails, so roughly "
+            f"{(1 - prec_t) / prec_t:.0f} healthy companies are flagged for every bankruptcy "
+            f"caught. This is the rarity of bankruptcy, not a weaker model: Average Precision is "
+            f"{lift_ap:.0f}× random here, against {lift_ap_s:.0f}× in the sample. As a screening "
+            f"tool it narrows the search: among flagged companies failure is about "
+            f"{prec_t / base:.0f}× more common than average ({prec_t:.0%} vs {base:.1%})."
+        )
 
     c1, c2 = st.columns([1, 1.2])
     grid = cm.pivot(index="actual", columns="predicted", values="companies").loc[
@@ -614,32 +637,78 @@ shows how much the model adds.
     fig.update_layout(title="Test companies at the chosen threshold (sample)")
     c1.plotly_chart(style(fig, 340), width="stretch")
 
-    tbl = metrics.copy()
-    tbl.columns = ["Metric", "Sample", "Population"]
-    c2.dataframe(tbl, hide_index=True, width="stretch",
-                 column_config={c: st.column_config.NumberColumn(format="%.3f")
-                                for c in ["Sample", "Population"]})
-    c2.caption(f"The threshold is a sample-level probability of "
-               f"{m.loc['Threshold (probability)', 'sample']:.3f}, which equals "
-               f"{m.loc['Threshold (probability)', 'population']:.3f} at population level.")
+    # Plain-language reading of the four cells
+    tn_ = int(grid.loc["Active", "Active"]);   fp_ = int(grid.loc["Active", "Bankrupt"])
+    fn_ = int(grid.loc["Bankrupt", "Active"]); tp_ = int(grid.loc["Bankrupt", "Bankrupt"])
+    c2.markdown(
+        f"""
+**How to read the grid** (test companies, sample):
+
+- **{tp_:,}** bankrupt companies correctly flagged (caught)
+- **{fn_:,}** bankrupt companies not flagged (missed)
+- **{fp_:,}** active companies flagged (false alarms)
+- **{tn_:,}** active companies correctly not flagged
+
+Rows are what really happened, columns are what the model said.
+        """
+    )
+
+    # ── Metrics table with explanations ──────────────────────────────────────
+    st.markdown("**All test metrics: sample vs real population**")
+    pct_rows = {"Bankruptcy rate", "Precision at threshold", "Recall at threshold",
+                "Threshold (probability)"}
+    explain = {
+        "Bankruptcy rate":
+            "Share of companies that went bankrupt. Bankruptcies are over-represented in the "
+            "sample by design; the population figure is the real-world rate.",
+        "ROC-AUC":
+            "How well the model ranks bankrupt companies above active ones (0.5 = coin flip, "
+            "1 = perfect). Does not depend on how common bankruptcy is, so it is the same in both.",
+        "Average Precision":
+            "How clean the list of flagged companies is, averaged over all cut-offs. Compare it "
+            "with the bankruptcy rate, which is what random picking would score.",
+        "Precision at threshold":
+            "Of the companies the model flags, the share that really went bankrupt. Lower in the "
+            "population because healthy companies are far more common there.",
+        "Recall at threshold":
+            "Of the companies that went bankrupt, the share the model flags. The same in both: "
+            "it only involves bankrupt companies, which were all sampled.",
+        "F1 at threshold":
+            "Balance of precision and recall (higher when both are high). Falls in the population "
+            "together with precision.",
+        "Threshold (probability)":
+            "The cut-off: companies at or above this probability are flagged. The population "
+            "figure is the same cut-off expressed as a real-world probability.",
+    }
+    def fmt(metric, x):
+        return f"{x:.1%}" if metric in pct_rows else f"{x:.3f}"
+    tbl = pd.DataFrame({
+        "Metric":       metrics["metric"],
+        "Sample":       [fmt(k, x) for k, x in zip(metrics["metric"], metrics["sample"])],
+        "Population":   [fmt(k, x) for k, x in zip(metrics["metric"], metrics["population"])],
+        "What it means": metrics["metric"].map(explain),
+    })
+    md_rows = ["| Metric | Sample | Population | What it means |", "|---|---:|---:|---|"]
+    md_rows += [f"| {metric} | {sample} | {pop} | {meaning} |"
+                for metric, sample, pop, meaning in tbl.itertuples(index=False, name=None)]
+    st.markdown("\n".join(md_rows))
+    thr_s = m.loc["Threshold (probability)", "sample"]
+    thr_p = m.loc["Threshold (probability)", "population"]
+    st.caption(
+        f"The cut-off of {thr_s:.1%} is on the model's sample scale. In real-world terms it "
+        f"flags companies with at least a {thr_p:.1%} chance of bankruptcy, about "
+        f"{thr_p / rate_p:.0f}× the average of {rate_p:.1%}."
+    )
 
     # ── Reading the chosen cut-off ───────────────────────────────────────────
-    tn = int(grid.loc["Active", "Active"]);   fp = int(grid.loc["Active", "Bankrupt"])
-    fn = int(grid.loc["Bankrupt", "Active"]); tp = int(grid.loc["Bankrupt", "Bankrupt"])
     st.subheader("What the cut-off means")
     st.markdown(
         f"""
 The model gives every company a probability; companies above the cut-off are **flagged**.
-At the chosen cut-off, the model flags **{tp + fp:,}** of the {tp + fp + tn + fn:,} test
-companies. **{tp:,}** of them really went bankrupt, so it catches **{tp:,} of {tp + fn:,}
-bankruptcies** ({tp / (tp + fn):.0%}), while **{fp:,}** flagged companies stayed active and
-**{fn:,}** bankruptcies were missed.
-
 Where to put the cut-off is a trade-off: lower it and more bankruptcies are caught, but more
-healthy companies are flagged too. The cut-off used here is the one that best balances the two
-(maximum F1), chosen on the training data. The usual default of 0.5 would miss most
-bankruptcies, because the model rarely gives a company more than a 50% probability when only
-about {rate_s:.0%} of companies are bankrupt.
+healthy companies are flagged too. The usual default of 0.5 would miss most bankruptcies,
+because the model rarely gives a company more than a 50% probability when only about
+{rate_s:.0%} of companies are bankrupt.
         """
     )
 
@@ -788,6 +857,27 @@ value stops being a warning sign.
     c1.plotly_chart(style(fig, 460), width="stretch")
     c1.caption("For a typical bankrupt company, the red bars show which features push its "
                "risk up; for a typical active company, the blue bars show what keeps it down.")
+    prof_all = profile.copy()
+    prof_all["gap"] = prof_all["mean_shap_bankrupt"] - prof_all["mean_shap_active"]
+    up   = prof_all.sort_values("mean_shap_bankrupt", ascending=False).head(3)
+    down = prof_all.sort_values("mean_shap_active").head(3)
+    sep  = prof_all.sort_values("gap", ascending=False).head(1).iloc[0]
+    def listing(frame, col):
+        return ", ".join(f"**{feature_name(f)}** ({x:+.2f})" for f, x in zip(frame["feature"], frame[col]))
+    c1.markdown(
+        f"""
+**Reading this chart.** Each bar is a feature's average push on the prediction, separately for
+the two groups of test companies (log-odds; +0.7 roughly doubles the odds of bankruptcy).
+
+- A typical **bankrupt** company is pushed towards risk mostly by {listing(up, "mean_shap_bankrupt")}.
+- A typical **active** company is kept low-risk mostly by {listing(down, "mean_shap_active")}.
+- The wider the gap between a feature's red and blue bar, the better it separates the two
+  groups. The widest gap is **{feature_name(sep["feature"])}**
+  ({sep["mean_shap_bankrupt"]:+.2f} vs {sep["mean_shap_active"]:+.2f}).
+
+Bars are averages: an individual company can look quite different from its group's typical profile.
+        """
+    )
 
     feats = dependence["feature"].unique().tolist()
     chosen = c2.selectbox("Feature", feats, format_func=feature_name)
@@ -809,6 +899,43 @@ value stops being a warning sign.
                    f"average effect {missing['mean_shap'].iloc[0]:+.2f}.")
     c2.caption("Each point averages at least 20 companies. Above zero raises risk, "
                "below zero lowers it.")
+
+    # Automatic reading of the selected feature
+    k = known.sort_values("feature_median")
+    euro_feats = {"Total assets", "Current assets", "Current liabilities", "Shareholders funds",
+                  "P/L before tax", "FE_total_liabilities", "FE_non_current_assets"}
+    def show(x):
+        if chosen in euro_feats:
+            return f"€{x / 1e6:.1f}M" if abs(x) >= 1e6 else f"€{x / 1e3:.0f}k"
+        if chosen == "Company Age":
+            return f"{x:.0f} years"
+        return f"{x:.2f}"
+    if len(k) >= 2:
+        first, last = k.iloc[0], k.iloc[-1]
+        direction = ("higher values **raise** the risk" if last["mean_shap"] > first["mean_shap"]
+                     else "higher values **lower** the risk")
+        cross = None
+        for (_, a), (_, b) in zip(k.iloc[:-1].iterrows(), k.iloc[1:].iterrows()):
+            if np.sign(a["mean_shap"]) != np.sign(b["mean_shap"]) and a["mean_shap"] != b["mean_shap"]:
+                t = -a["mean_shap"] / (b["mean_shap"] - a["mean_shap"])
+                cross = a["feature_median"] + t * (b["feature_median"] - a["feature_median"])
+                break
+        text = (
+            f"**Reading this chart.** Companies are grouped into bands of similar "
+            f"{feature_name(chosen).lower()}; each point is a band's median value (across) and the "
+            f"band's average push on the prediction (up). Overall, {direction}: the push goes from "
+            f"{first['mean_shap']:+.2f} at {show(first['feature_median'])} to "
+            f"{last['mean_shap']:+.2f} at {show(last['feature_median'])}."
+        )
+        if cross is not None:
+            side = "above" if last["mean_shap"] > first["mean_shap"] else "below"
+            text += (f" The line crosses zero at about **{show(cross)}**: {side} that level, "
+                     f"the feature starts to count as a warning sign.")
+        if chosen in euro_feats:
+            text += (" Note that euro amounts grow with company size, so part of this effect is "
+                     "size rather than distress. The ratios (debt ratio, ROA, current ratio) "
+                     "compare companies of different sizes more fairly.")
+        c2.markdown(text)
 
 
 # ── Page: Risk calculator ────────────────────────────────────────────────────
